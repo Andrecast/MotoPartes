@@ -2,9 +2,7 @@ package com.tcgb02.motopartes.commons.entity;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 @Entity
 @Table(name="provider_movement", schema="APP_M_INVENTARIO")
@@ -17,7 +15,7 @@ public class ProviderMovement implements Serializable {
     private Long provider_movement_id;
 
     @Column(nullable = false)
-    private String amount;
+    private Integer amount;
 
     @Column(name = "create_at", nullable = false)
     @Temporal(TemporalType.DATE)
@@ -33,23 +31,17 @@ public class ProviderMovement implements Serializable {
     private String status;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "provider_id", insertable = false, updatable = false) //Aquí si va el join por ser unidireccional
+    @JoinColumn(name = "provider_id", insertable = false, updatable = false) //unidireccional
     private Provider provider;
 
     @ManyToOne(fetch = FetchType.LAZY)
     //@JoinColumn(name = "store_id", insertable = false, updatable = false)
     private Store store;
 
-    //@ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     //@JoinColumn(name = "product_id", insertable = false, updatable = false) //relación unidireccional
-    //private Product product;
-    @OneToMany(fetch = FetchType.LAZY)
-    @JoinColumn(name = "product_id", insertable = false, updatable = false) //relación unidireccional
-    private List<Product> products;
+    private Product product;
 
-    public ProviderMovement() {
-        this.products = new ArrayList<Product>();
-    }
 
     public Long getProvider_movement_id() {
         return provider_movement_id;
@@ -59,11 +51,11 @@ public class ProviderMovement implements Serializable {
         this.provider_movement_id = provider_movement_id;
     }
 
-    public String getAmount() {
+    public Integer getAmount() {
         return amount;
     }
 
-    public void setAmount(String amount) {
+    public void setAmount(Integer amount) {
         this.amount = amount;
     }
 
@@ -99,20 +91,11 @@ public class ProviderMovement implements Serializable {
         this.store = store;
     }
 
-    public List<Product> getProducts() {
-        return products;
+    public Product getProduct() {
+        return product;
     }
 
-    public void setProducts(List<Product> products) {
-        this.products = products;
+    public void setProduct(Product product) {
+        this.product = product;
     }
-
-
-    public void addProductMovement(Product product) {
-        this.products.add(product);
-    }
-
-    //public Long calcularPrecio() {
-      //  return amount; //Aquí hacer los calculos con taxes y reglas de precio
-    //}
 }

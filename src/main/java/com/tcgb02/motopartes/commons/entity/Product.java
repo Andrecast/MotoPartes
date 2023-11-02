@@ -41,9 +41,8 @@ public class Product implements Serializable {
 
     @OneToMany(mappedBy = "product", fetch = FetchType.LAZY)
     private List<PricingRule> pricingRule;
-
-    //@OneToMany(mappedBy = "product", fetch = FetchType.LAZY)
-    //private List<ProviderMovement> providerMovement; movimientos que ha tenido un producto
+    @OneToMany(mappedBy = "product", fetch = FetchType.LAZY)
+    private List<ProviderMovement> providerMovement;
 
 
     public Long getProduct_id() {
