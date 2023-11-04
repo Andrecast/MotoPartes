@@ -1,4 +1,4 @@
-package com.tcgb02.motopartes.commons.entity;
+package com.tcgb02.motopartes.commons.models.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;

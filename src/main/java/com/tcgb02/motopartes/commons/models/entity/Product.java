@@ -1,4 +1,4 @@
-package com.tcgb02.motopartes.commons.entity;
+package com.tcgb02.motopartes.commons.models.entity;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -12,25 +12,26 @@ public class Product implements Serializable {
     @Id
     @SequenceGenerator(name = "product_seq", sequenceName = "product_seq", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "product_seq")
-    private Long product_id;
+    @Column(name = "product_id")
+    private Long productId;
 
-    @Column(nullable = false)
+    //@Column(nullable = false)
     private String name;
 
     @Column(name = "alt_description")
     private String altDescription;
 
-    @Column(nullable = false)
+    //@Column(nullable = false)
     private String description;
 
-    @Column(nullable = false)
+    //@Column(nullable = false)
     private Long price;
 
     @Column(name = "data_sheet")
     private String dataSheet;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    //@JoinColumn(name = "provider_id", insertable = false, updatable = false)
+    @JoinColumn(name = "providerId", insertable = false, updatable = false)
     private Provider provider;
 
     @OneToMany(mappedBy = "product", fetch = FetchType.LAZY)
@@ -44,13 +45,20 @@ public class Product implements Serializable {
     @OneToMany(mappedBy = "product", fetch = FetchType.LAZY)
     private List<ProviderMovement> providerMovement;
 
-
-    public Long getProduct_id() {
-        return product_id;
+    public Long getProductId() {
+        return productId;
     }
 
-    public void setProduct_id(Long product_id) {
-        this.product_id = product_id;
+    public void setProductId(Long productId) {
+        this.productId = productId;
+    }
+
+    public List<ProviderMovement> getProviderMovement() {
+        return providerMovement;
+    }
+
+    public void setProviderMovement(List<ProviderMovement> providerMovement) {
+        this.providerMovement = providerMovement;
     }
 
     public String getName() {

@@ -1,4 +1,4 @@
-package com.tcgb02.motopartes.commons.entity;
+package com.tcgb02.motopartes.commons.models.entity;
 
 import javax.persistence.*;
 
@@ -9,37 +9,38 @@ public class Inventory {
     @Id
     @SequenceGenerator(name = "inventory_seq", sequenceName = "inventory_seq", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "inventory_seq")
-    private Long inventory_id;
+    @Column(name = "inventory_id")
+    private Long inventoryId;
 
-    @Column(nullable = false)
+    //@Column(nullable = false)
     private Integer amount;
 
-    @Column(nullable = false)
+    //@Column(nullable = false)
     private Integer stock;
 
-    @Column(nullable = false)
+    //@Column(nullable = false)
     private Integer available;
 
-    @Column(name = "min_quantity", nullable = false)
+    @Column(name = "min_quantity") //@Column(name = "min_quantity", nullable = false)
     private Integer minQuantity;
 
-    @Column(name = "max_quantity", nullable = false)
+    @Column(name = "max_quantity") //@Column(name = "max_quantity", nullable = false)
     private Integer maxQuantity;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    //@JoinColumn(name = "store_id", insertable = false, updatable = false)
+    @JoinColumn(name = "store_id", insertable = false, updatable = false)
     private Store store;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    //@JoinColumn(name = "product_id", insertable = false, updatable = false)
+    @JoinColumn(name = "product_id", insertable = false, updatable = false)
     private Product product;
 
-    public Long getInventory_id() {
-        return inventory_id;
+    public Long getInventoryId() {
+        return inventoryId;
     }
 
-    public void setInventory_id(Long inventory_id) {
-        this.inventory_id = inventory_id;
+    public void setInventoryId(Long inventoryId) {
+        this.inventoryId = inventoryId;
     }
 
     public Integer getAmount() {

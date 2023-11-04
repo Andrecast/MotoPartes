@@ -1,4 +1,4 @@
-package com.tcgb02.motopartes.commons.entity;
+package com.tcgb02.motopartes.commons.models.entity;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -14,40 +14,41 @@ public class PricingRule implements Serializable {
     @Id
     @SequenceGenerator(name = "pricing_rule_seq", sequenceName = "pricing_rule_seq", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "pricing_rule_seq")
-    private Long pricing_rule_id;
+    @Column(name = "pricing_rule_id")
+    private Long pricingRuleId;
 
-    @Column(name = "base_price", nullable = false)
+    @Column(name = "base_price")
     private Long basePrice;
 
-    @Column(nullable = false)
+    //@Column(nullable = false)
     private Long discount;
 
-    @Column(name = "min_amount", nullable = false)
+    @Column(name = "min_amount")
     private Integer minAmount;
 
-    @Column(name = "max_amount", nullable = false)
+    @Column(name = "max_amount")
     private Integer maxAmount;
 
-    @Column(name = "start_date", nullable = false)
+    @Column(name = "start_date")
     @Temporal(TemporalType.DATE)
     //@DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date startDate;
 
-    @Column(name = "end_date", nullable = false)
+    @Column(name = "end_date") //@Column(name = "end_date", nullable = false)
     @Temporal(TemporalType.DATE)
     //@DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date endDate;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    //@JoinColumn(name = "product_id", insertable = false, updatable = false)
+    @JoinColumn(name = "productId", insertable = false, updatable = false)
     private Product product;
 
-    public Long getPricing_rule_id() {
-        return pricing_rule_id;
+    public Long getPricingRuleId() {
+        return pricingRuleId;
     }
 
-    public void setPricing_rule_id(Long pricing_rule_id) {
-        this.pricing_rule_id = pricing_rule_id;
+    public void setPricingRuleId(Long pricingRuleId) {
+        this.pricingRuleId = pricingRuleId;
     }
 
     public Long getBasePrice() {

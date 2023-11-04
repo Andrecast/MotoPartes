@@ -1,4 +1,4 @@
-package com.tcgb02.motopartes.commons.entity;
+package com.tcgb02.motopartes.commons.models.entity;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -12,26 +12,27 @@ public class Tax implements Serializable {
     @Id
     @SequenceGenerator(name = "tax_seq", sequenceName = "tax_seq", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "tax_seq")
-    private Long tax_id;
+    @Column(name = "tax_id")
+    private Long taxId;
 
-    @Column(nullable = false)
+    //@Column(nullable = false)
     private String name;
 
-    @Column(nullable = false)
+    //@Column(nullable = false)
     private Long rate;
 
-    @Column(nullable = false)
+    //@Column(nullable = false)
     private String description;
 
     @OneToMany(mappedBy = "tax", fetch = FetchType.LAZY)
     private List<TaxProduct> products;
 
-    public Long getTax_id() {
-        return tax_id;
+    public Long getTaxId() {
+        return taxId;
     }
 
-    public void setTax_id(Long tax_id) {
-        this.tax_id = tax_id;
+    public void setTaxId(Long taxId) {
+        this.taxId = taxId;
     }
 
     public String getName() {

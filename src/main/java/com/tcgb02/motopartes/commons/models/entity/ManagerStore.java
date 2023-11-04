@@ -1,4 +1,4 @@
-package com.tcgb02.motopartes.commons.entity;
+package com.tcgb02.motopartes.commons.models.entity;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -14,11 +14,11 @@ public class ManagerStore implements Serializable {
     private ManagerStorePK id;
 
     @ManyToOne
-    //@JoinColumn(name = "manager_id", insertable = false, updatable = false)
+    @JoinColumn(name = "manager_id", insertable = false, updatable = false)
     private Manager manager;
 
     @ManyToOne
-    //@JoinColumn(name = "store_id", insertable = false, updatable = false)
+    @JoinColumn(name = "store_id", insertable = false, updatable = false)
     private Store store;
 
     public ManagerStorePK getId() {

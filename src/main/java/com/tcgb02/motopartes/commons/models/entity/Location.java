@@ -1,4 +1,4 @@
-package com.tcgb02.motopartes.commons.entity;
+package com.tcgb02.motopartes.commons.models.entity;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -12,9 +12,10 @@ public class Location implements Serializable {
     @Id
     @SequenceGenerator(name = "location_seq", sequenceName = "location_seq", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "location_seq")
-    private Long location_id;
+    @Column(name = "location_id")
+    private Long locationId;
 
-    @Column(nullable = false)
+    //@Column(nullable = false)
     private String name;
 
     @OneToMany(mappedBy = "location", fetch = FetchType.LAZY)
@@ -26,12 +27,12 @@ public class Location implements Serializable {
     @OneToMany(mappedBy = "location", fetch = FetchType.LAZY)
     private List<Provider> providers;
 
-    public Long getLocation_id() {
-        return location_id;
+    public Long getLocationId() {
+        return locationId;
     }
 
-    public void setLocation_id(Long location_id) {
-        this.location_id = location_id;
+    public void setLocationId(Long locationId) {
+        this.locationId = locationId;
     }
 
     public String getName() {

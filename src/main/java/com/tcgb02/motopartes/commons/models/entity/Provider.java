@@ -1,4 +1,4 @@
-package com.tcgb02.motopartes.commons.entity;
+package com.tcgb02.motopartes.commons.models.entity;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -12,16 +12,17 @@ public class Provider implements Serializable {
     @Id
     @SequenceGenerator(name = "provider_seq", sequenceName = "provider_seq", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "provider_seq")
-    private Long provider_id;
+    @Column(name = "provider_id")
+    private Long providerId;
 
-    @Column(nullable = false)
+    //@Column(nullable = false)
     private String name;
 
-    @Column(nullable = false)
+    //@Column(nullable = false)
     private Long contact;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    //@JoinColumn(name = "location_id", insertable = false, updatable = false)
+    @JoinColumn(name = "location_id", insertable = false, updatable = false)
     private Location location;
 
     @OneToMany(mappedBy = "provider", fetch = FetchType.LAZY)
@@ -30,13 +31,12 @@ public class Provider implements Serializable {
     //@OneToMany(mappedBy = "provider", fetch = FetchType.LAZY)
     //private List<ProviderMovement> providerMovement; no necesito una lista de movimientos del proveedor
 
-
-    public Long getProvider_id() {
-        return provider_id;
+    public Long getProviderId() {
+        return providerId;
     }
 
-    public void setProvider_id(Long provider_id) {
-        this.provider_id = provider_id;
+    public void setProviderId(Long providerId) {
+        this.providerId = providerId;
     }
 
     public String getName() {

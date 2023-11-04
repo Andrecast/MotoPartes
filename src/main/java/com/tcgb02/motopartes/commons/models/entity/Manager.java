@@ -1,4 +1,4 @@
-package com.tcgb02.motopartes.commons.entity;
+package com.tcgb02.motopartes.commons.models.entity;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -12,27 +12,28 @@ public class Manager implements Serializable {
     @Id
     @SequenceGenerator(name = "manager_seq", sequenceName = "manager_seq", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "manager_seq")
-    private Long manager_id;
+    @Column(name = "manager_id")
+    private Long managerId;
 
-    @Column(nullable = false)
+    //@Column(nullable = false)
     private String name;
 
-    @Column(nullable = false)
+    //@Column(nullable = false)
     private Long identification;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    //@JoinColumn(name = "location_id", insertable = false, updatable = false)
+    @JoinColumn(name = "location_id", insertable = false, updatable = false)
     private Location location;
 
     @OneToMany(mappedBy = "manager", fetch = FetchType.LAZY)
     private List<ManagerStore> stores;
 
-    public Long getManager_id() {
-        return manager_id;
+    public Long getManagerId() {
+        return managerId;
     }
 
-    public void setManager_id(Long manager_id) {
-        this.manager_id = manager_id;
+    public void setManagerId(Long managerId) {
+        this.managerId = managerId;
     }
 
     public String getName() {

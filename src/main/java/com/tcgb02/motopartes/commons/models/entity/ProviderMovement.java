@@ -1,4 +1,4 @@
-package com.tcgb02.motopartes.commons.entity;
+package com.tcgb02.motopartes.commons.models.entity;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -12,12 +12,13 @@ public class ProviderMovement implements Serializable {
     @Id
     @SequenceGenerator(name = "provider_movement_seq", sequenceName = "provider_movement_seq", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "provider_movement_seq")
-    private Long provider_movement_id;
+    @Column(name = "provider_movement_id")
+    public Long providerMovementId;
 
-    @Column(nullable = false)
+    //@Column(nullable = false)
     private Integer amount;
 
-    @Column(name = "create_at", nullable = false)
+    @Column(name = "create_at") //@Column(name = "create_at", nullable = false)
     @Temporal(TemporalType.DATE)
     //@DateTimeFormat(pattern = "yyyy-MM-dd") con prePeersist lo va hacer automático
     private Date createAt;
@@ -27,28 +28,27 @@ public class ProviderMovement implements Serializable {
         createAt = new Date();
     }
 
-    @Column(nullable = false)
+    //@Column(nullable = false)
     private String status;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "provider_id", insertable = false, updatable = false) //unidireccional
+    @JoinColumn(name = "providerId", insertable = false, updatable = false) //unidireccional
     private Provider provider;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    //@JoinColumn(name = "store_id", insertable = false, updatable = false)
+    @JoinColumn(name = "storeId", insertable = false, updatable = false)
     private Store store;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    //@JoinColumn(name = "product_id", insertable = false, updatable = false) //relación unidireccional
+    @JoinColumn(name = "productId", insertable = false, updatable = false) //relación unidireccional
     private Product product;
 
-
-    public Long getProvider_movement_id() {
-        return provider_movement_id;
+    public Long getProviderMovementId() {
+        return providerMovementId;
     }
 
-    public void setProvider_movement_id(Long provider_movement_id) {
-        this.provider_movement_id = provider_movement_id;
+    public void setProviderMovementId(Long providerMovementId) {
+        this.providerMovementId = providerMovementId;
     }
 
     public Integer getAmount() {
