@@ -1,5 +1,8 @@
 package com.tcgb02.motopartes.commons.models.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
@@ -23,13 +26,16 @@ public class Provider implements Serializable {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "location_id", insertable = false, updatable = false)
+    @JsonBackReference
     private Location location;
 
     @OneToMany(mappedBy = "provider", fetch = FetchType.LAZY)
+    @JsonManagedReference
     private List<Product> products;
 
-    //@OneToMany(mappedBy = "provider", fetch = FetchType.LAZY)
-    //private List<ProviderMovement> providerMovement; no necesito una lista de movimientos del proveedor
+    @OneToMany(mappedBy = "provider", fetch = FetchType.LAZY)
+    @JsonManagedReference
+    private List<ProviderMovement> providerMovement; //no necesito una lista de movimientos del proveedor
 
     public Long getProviderId() {
         return providerId;

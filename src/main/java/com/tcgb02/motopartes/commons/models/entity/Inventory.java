@@ -1,5 +1,7 @@
 package com.tcgb02.motopartes.commons.models.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 
 @Entity
@@ -29,10 +31,12 @@ public class Inventory {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "store_id", insertable = false, updatable = false)
+    @JsonBackReference
     private Store store;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "product_id", insertable = false, updatable = false)
+    @JsonBackReference
     private Product product;
 
     public Long getInventoryId() {

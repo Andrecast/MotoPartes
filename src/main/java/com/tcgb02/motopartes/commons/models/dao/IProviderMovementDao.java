@@ -5,7 +5,6 @@ import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
 
-public interface IProviderMovementDao {
+public interface IProviderMovementDao extends CrudRepository<ProviderMovement, Long>{
 
-    public List<ProviderMovement> findAll();
 }

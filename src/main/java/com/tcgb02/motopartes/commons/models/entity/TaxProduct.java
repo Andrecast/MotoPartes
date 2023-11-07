@@ -1,5 +1,7 @@
 package com.tcgb02.motopartes.commons.models.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -15,10 +17,12 @@ public class TaxProduct implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "tax_id", insertable = false, updatable = false)
+    @JsonBackReference
     private Tax tax;
 
     @ManyToOne
     @JoinColumn(name = "product_id", insertable = false, updatable = false)
+    @JsonBackReference
     private Product product;
 
     public TaxProductPK getId() {

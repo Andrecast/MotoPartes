@@ -1,5 +1,8 @@
 package com.tcgb02.motopartes.commons.models.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
@@ -19,16 +22,20 @@ public class Store implements Serializable {
     private String name;
 
     @OneToMany(mappedBy = "store", fetch = FetchType.LAZY)
+    @JsonManagedReference
     private List<ManagerStore> managers;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "location_id", insertable = false, updatable = false)
+    @JsonBackReference
     private Location location;
 
     @OneToMany(mappedBy = "store", fetch = FetchType.LAZY)
+    @JsonManagedReference
     private List<ProviderMovement> providerMovement;
 
     @OneToMany(mappedBy = "store", fetch = FetchType.LAZY)
+    @JsonManagedReference
     private List<Inventory> inventory;
 
     public Long getStoreId() {

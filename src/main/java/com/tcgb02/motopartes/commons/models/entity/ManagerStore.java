@@ -1,5 +1,7 @@
 package com.tcgb02.motopartes.commons.models.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -15,10 +17,12 @@ public class ManagerStore implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "manager_id", insertable = false, updatable = false)
+    @JsonBackReference
     private Manager manager;
 
     @ManyToOne
     @JoinColumn(name = "store_id", insertable = false, updatable = false)
+    @JsonBackReference
     private Store store;
 
     public ManagerStorePK getId() {

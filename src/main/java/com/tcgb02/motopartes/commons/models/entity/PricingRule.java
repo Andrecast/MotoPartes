@@ -1,5 +1,7 @@
 package com.tcgb02.motopartes.commons.models.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
@@ -41,6 +43,7 @@ public class PricingRule implements Serializable {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "productId", insertable = false, updatable = false)
+    @JsonBackReference
     private Product product;
 
     public Long getPricingRuleId() {

@@ -1,5 +1,8 @@
 package com.tcgb02.motopartes.commons.models.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
@@ -32,15 +35,19 @@ public class ProviderMovement implements Serializable {
     private String status;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "providerId", insertable = false, updatable = false) //unidireccional
+    @JoinColumn(name = "provider_id", insertable = false, updatable = false)
+    @JsonBackReference
     private Provider provider;
 
+
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "storeId", insertable = false, updatable = false)
+    @JoinColumn(name = "store_id", insertable = false, updatable = false)
+    @JsonBackReference
     private Store store;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "productId", insertable = false, updatable = false) //relación unidireccional
+    @JoinColumn(name = "product_id", insertable = false, updatable = false)
+    @JsonBackReference
     private Product product;
 
     public Long getProviderMovementId() {

@@ -1,5 +1,7 @@
 package com.tcgb02.motopartes.commons.models.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
@@ -25,6 +27,7 @@ public class Tax implements Serializable {
     private String description;
 
     @OneToMany(mappedBy = "tax", fetch = FetchType.LAZY)
+    @JsonManagedReference
     private List<TaxProduct> products;
 
     public Long getTaxId() {

@@ -1,5 +1,8 @@
 package com.tcgb02.motopartes.commons.models.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
@@ -23,9 +26,11 @@ public class Manager implements Serializable {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "location_id", insertable = false, updatable = false)
+    @JsonBackReference
     private Location location;
 
     @OneToMany(mappedBy = "manager", fetch = FetchType.LAZY)
+    @JsonManagedReference
     private List<ManagerStore> stores;
 
     public Long getManagerId() {
