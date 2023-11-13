@@ -22,6 +22,7 @@ dependencies {
 	developmentOnly("org.springframework.boot:spring-boot-devtools")
 	runtimeOnly("com.oracle.database.jdbc:ojdbc8")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
+	implementation 'com.fasterxml.jackson.datatype:jackson-datatype-hibernate5:2.13.0'
 }
 
 tasks.withType<Test> {
